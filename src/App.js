@@ -4,13 +4,13 @@ import { useReducer } from 'react';
 const App = () => {
   const [isChecked, toggle] = useReducer(
     isChecked => !isChecked,
-    false);
+    true);
 
   return (
     <>
       <input 
         type='checkbox'
-        value={isChecked}
+        defaultChecked={isChecked}
         onChange={toggle}
        />
        <p>{isChecked ? 'I\'m checked!' : 'I\'m not checked!'}</p>
