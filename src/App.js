@@ -4,7 +4,7 @@ import { useReducer } from 'react';
 const App = () => {
   const [isChecked, toggle] = useReducer(
     isChecked => !isChecked,
-    true);
+    false);
 
   return (
     <>
