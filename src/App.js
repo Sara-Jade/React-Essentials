@@ -1,20 +1,16 @@
 import './App.css';
-import { useReducer } from 'react';
+import { useEffect, useState } from 'react';
 
-const App = () => {
-  const [isChecked, toggle] = useReducer(
-    isChecked => !isChecked,
-    true);
+const App = ({firstName}) => {
+  const [data, setData] = useState(null);
 
-  return (
-    <>
-      <input 
-        type='checkbox'
-        defaultChecked={isChecked}
-        onChange={toggle}
-       />
-       <p>{isChecked ? 'I\'m checked!' : 'I\'m not checked!'}</p>
-    </>);
+  useEffect(() => {
+    fetch(`https://api.agify.io?name=${firstName}`)
+    .then(response => response.json())
+    .then(setData);
+  }, [firstName]);
+   
+  return data ? <p>{JSON.stringify(data)}</p> : <p>No data on {firstName}</p>;
 };
 
 export default App;
